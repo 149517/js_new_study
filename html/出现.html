@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>滑动出现</title>
+    <script src="jog%20animation.js"></script>
+    <style>
+        /*::-webkit-scrollbar {*/
+
+        /*    display: none; !* Chrome Safari *!*/
+
+        /*}*/
+        body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .box {
+            width: 40px;
+            height: 40px;
+            background-color: #6273f5;
+            position: absolute;
+            right: 0;
+            bottom: 300px;
+        }
+        .arrow {
+            width: 100%;
+            height: 100%;
+            background: url("../images/左箭头.png") no-repeat;
+
+            background-size: 40px;
+        }
+        .con{
+            width: 120px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            right: -80px;
+            line-height: 40px;
+            background-color: greenyellow;
+            z-index: -1;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            let box = document.querySelector('.box');
+            let arrow = document.querySelector('.arrow');
+            let con = document.querySelector('.con');
+
+            box.addEventListener('mouseover',function(){
+                animate(con,-80,function(){
+                    // 箭头反转
+                    arrow.style.backgroundImage = 'url("images/右箭头.png")';
+                })
+            })
+            box.addEventListener('mouseleave',function(){
+                animate(con,80,function(){
+                    // 箭头反转
+                    arrow.style.backgroundImage = 'url("images/左箭头.png")';
+                })
+            })
+
+
+        }
+    </script>
+</head>
+<body>
+<!--<img src="images/左箭头.png" alt="">-->
+<div class="box">
+    <div class="arrow"></div>
+    <div class="con">问题反馈</div>
+</div>
+</body>
+</html>

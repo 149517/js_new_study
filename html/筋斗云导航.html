@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>筋斗云</title>
+    <style>
+        nav {
+            width: 500px;
+            height: 100px;
+            position: relative;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /*span色块
+         功能：
+         实现鼠标经过聚焦到当前导航菜单
+         鼠标移去后回到当前的界面（第一个）
+         鼠标点击后，色块停留在菜单，
+         经过其他同样移开，移去后回到点击的菜单
+        */
+        span {
+            width: 80px;
+            height: 40px;
+            background-color: #6273f5;
+            position: absolute;
+            top: 15px;
+            left: 40px;
+            z-index: 1;
+        }
+
+        ul {
+            list-style-type: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 40px;
+            z-index: 2;
+        }
+
+        ul li {
+            width: 80px;
+            height: 40px;
+            float: left;
+            background-color: rgba(197, 213, 153, 0.43);
+            line-height: 40px;
+            text-align: center;
+        }
+    </style>
+    <script src="../js/joganimation.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            // 元素获取
+            let sp = document.querySelector('span');
+            let lis = document.querySelectorAll('li');
+
+            // current 作为起始值
+            let current = 40;
+
+            for (let i = 0; i < lis.length; i++) {
+
+                lis[i].addEventListener('mouseenter', function () {
+                    animate(sp, this.offsetLeft);
+                })
+                lis[i].addEventListener('mouseleave', function () {
+                    animate(sp, current);
+                })
+
+                // 点击
+                lis[i].addEventListener('click',function(){
+                    current = this.offsetLeft;
+                })
+            }
+        })
+    </script>
+</head>
+<body>
+<nav>
+    <span></span>
+    <ul>
+        <li>首页</li>
+        <li>主题</li>
+        <li>文化</li>
+        <li>企业</li>
+        <li>帮助</li>
+    </ul>
+</nav>
+</body>
+</html>

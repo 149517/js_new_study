@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>touch</title>
+    <style>
+        .tou{
+            width: 200px;
+            height: 200px;
+            background: aquamarine;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            let tou = document.querySelector('.tou');
+            tou.addEventListener('touchstart',function(e){
+                console.log('nihao');
+                console.log(e.targetTouches[0]);
+            })
+            tou.addEventListener('touchmove',function(){
+                console.log('移动');
+            })
+            tou.addEventListener('touchend',function(){
+                console.log('离开哦');
+            })
+
+        }
+    </script>
+</head>
+<body>
+    <div class="tou"></div>
+</body>
+</html>

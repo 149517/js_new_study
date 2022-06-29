@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖动</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #6273f5;
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let box = document.querySelector('.box');
+
+            box.addEventListener('touchstart', function (e) {
+                // 获取当前盒子的距离
+                x = box.offsetLeft;
+                y = box.offsetTop;
+                // 获取手指的初始位置
+                startx = e.targetTouches[0].pageX;
+                starty = e.targetTouches[0].pageY;
+            })
+            box.addEventListener('touchmove', function (e) {
+                // 获取手指的移动距离
+                movex = e.targetTouches[0].pageX - startx;
+                movey = e.targetTouches[0].pageY - starty;
+
+                // 通过盒子的距离和手指 移动了 的距离相加更改盒子的偏移
+                this.style.left = x + movex + 'px';
+                this.style.top = y + movey + 'px';
+
+                e.preventDefault();    // 阻止屏幕滚动的默认行为
+            })
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+
+</div>
+</body>
+</html>

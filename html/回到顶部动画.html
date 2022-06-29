@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回到顶部</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            height: 2000px;
+        }
+
+        .top {
+            width: 90%;
+            height: 300px;
+            margin: 0 auto;
+            background-color: aquamarine;
+        }
+
+        .banner {
+            width: 90%;
+            height: 300px;
+            margin: 10px auto;
+            background-color: aqua;
+        }
+
+        .bottom {
+            width: 90%;
+            height: 500px;
+            margin: 10px auto;
+            background-color: greenyellow;
+        }
+
+        .right {
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            bottom: 20px;
+            right: 23px;
+            background-color: orange;
+            line-height: 20px;
+            display: none;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            let btn = document.querySelector('.right');
+            console.log(pageYOffset);
+            console.log(scrollY);
+
+            document.addEventListener('scroll', function () {
+                if (window.scrollY === 300) {
+                    btn.style.display = 'block';
+                }
+                btn.addEventListener('click', function () {
+                    // window.scroll(0, 0);
+                    animate_top(window, 0);
+                })
+            })
+
+            function animate_top(obj, target, callback) {
+
+                clearInterval(obj.timers);
+                obj.timers = setInterval(function () {
+
+                    // let step = Math.ceil((target - obj.offsetLeft) / 10);
+                    let step = (target - obj.scrollY) / 10;
+                    // 正值向上取整，负值向下，负值表示向后
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    if (obj.scrollY === target) {
+                        clearInterval(obj.timers);
+                        if (callback) {
+                            // console.log(callback);
+                            callback();
+                        }
+                    }
+                    // obj.style.left = obj.scrollY + step + 'px';
+                    window.scroll(0, scrollY + step);
+                }, 15)
+
+            }
+
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="top"></div>
+<div class="banner"></div>
+<div class="bottom"></div>
+<div class="right">回到顶部</div>
+
+</body>
+</html>

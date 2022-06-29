@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>缓动动画</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: greenyellow;
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let btn1 = document.querySelector('.btn1');
+            let btn2 = document.querySelector('.btn2');
+            let box = document.querySelector('.box');
+
+            function animate(obj, target,callback) {
+
+                clearInterval(obj.timers);
+                obj.timers = setInterval(function () {
+
+                    // let step = Math.ceil((target - obj.offsetLeft) / 10);
+                    let step = (target - obj.offsetLeft) / 10;
+                    // 正值向上取整，负值向下，负值表示向后
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    if (obj.offsetLeft === target) {
+                        clearInterval(obj.timers);
+                        if (callback){
+                            // console.log(callback);
+                            callback();
+                        }
+                    }
+                    obj.style.left = obj.offsetLeft + step + 'px';
+                }, 15)
+
+
+            }
+
+            btn1.addEventListener('click', function () {
+                animate(box, 600,function(){
+                    box.style.backgroundColor = 'red';
+                });
+            })
+            btn2.addEventListener('click', function () {
+                animate(box, 1000);
+            })
+
+        }
+    </script>
+</head>
+<body>
+<button class="btn1">600</button>
+<button class="btn2">1000</button>
+<div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>本地存储</title>
+    <script>
+        window.onload = function(){
+            let ipt = document.querySelector('input');
+            let set = document.querySelector('.set');
+            let get = document.querySelector('.get')
+            let remove = document.querySelector('.remove')
+            let del = document.querySelector('.del')
+
+            // 点击存储
+            set.addEventListener('click',function(){
+                // console.log(ipt.value);
+                let val = ipt.value;
+                sessionStorage.setItem('name',val);
+            })
+            // 获取数据
+            get.addEventListener('click',function (){
+                console.log(sessionStorage.getItem('name'));
+            })
+            // 移除数据
+            remove.addEventListener('click',function (){
+                sessionStorage.removeItem('name');
+            })
+            // 清空
+            del.addEventListener('click',function(){
+                // 清除所有数据
+                sessionStorage.clear();
+            })
+        }
+    </script>
+</head>
+<body>
+    <input type="text">
+    <button class="set">提交</button>
+    <button class="get">获取数据</button>
+    <button class="remove">删除数据</button>
+    <button class="del">清空数据</button>
+</body>
+</html>

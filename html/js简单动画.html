@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: greenyellow;
+            position: absolute;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: #6273f5;
+            position: absolute;
+            top: 300px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+
+            let box = document.querySelector('.box');
+            let box2 = document.querySelector('.box2');
+
+            //通过setInterval控制动画
+            //     let timer = setInterval(function () {
+            //
+            //         if(box.offsetLeft >= 600){
+            //             // 停止计时器
+            //             clearInterval(timer);
+            //         }
+            //         box.style.left = box.offsetLeft + 1 + 'px';
+            //     }, 30);
+            // }
+
+            // 将动画进行函数封装
+            function animate(obj, target) {
+
+                clearInterval(obj.timer);
+
+                obj.timer = setInterval(function () {
+                    if (obj.offsetLeft >= target) {
+                        clearInterval(obj.timer);
+                    }
+                    obj.style.left = obj.offsetLeft + 1 + 'px';
+                }, 30)
+            }
+            //调用
+            animate(box,300);
+            box2.addEventListener('click',function(){
+                animate(box2,600);
+            })
+
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+
+</div>
+<div class="box2"></div>
+</body>
+</html>

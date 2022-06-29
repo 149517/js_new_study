@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        .box {
+            position: relative;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 280px;
+            background-color: greenyellow;
+            overflow: hidden;
+        }
+
+        .banner {
+            width: 500%;
+            height: 340px;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        .banner img {
+            width: 400px;
+            height: 280px;
+            float: left;
+        }
+        .arrow_l {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            background: gray url("../images/左箭头.png") no-repeat;
+            background-size: 100%;
+            display: none;
+        }
+
+        .arrow_r {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            background: gray url("../images/右箭头.png") no-repeat;
+            background-size: 100%;
+            display: none;
+        }
+        .circular{
+            list-style: none;
+            /*list-style-type: circle;*/
+            position: absolute;
+            bottom: -15px;
+            left: 35%;
+        }
+        .circular li{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: url("../images/未选中圆点.png") no-repeat;
+            background-size: 100%;
+        }
+        .circular .current {
+            background: url("../images/圆点大 (1).png");
+            background-size: 100%;
+        }
+    </style>
+    <script src="../js/joganimation.js"></script>
+    <script src="../js/rotation.js"></script>
+</head>
+<body>
+    <div class="box">
+
+
+        <div class="banner">
+            <img class='images' src="../images/pic_1.jpg">
+            <img class='images' src="../images/pic_2.jpg">
+            <img class='images' src="../images/pic_3.jpg">
+        </div>
+
+        <div class="arrow_l"></div>
+        <div class="arrow_r"></div>
+
+        <ul class="circular">
+
+        </ul>
+
+    </div>
+</body>
+</html>
